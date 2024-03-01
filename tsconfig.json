@@ -16,6 +16,13 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "@API/*": ["src/API/*"],
+      "@BuildingBlocks/*": ["src/BuildingBlocks/*"],
+      "@Configuration/*": ["src/Configuration/*"],
+      "@Environments/*": ["src/Environments/*"],
+      "@Modules/*": ["src/Modules/*"]
+    }
   }
 }
