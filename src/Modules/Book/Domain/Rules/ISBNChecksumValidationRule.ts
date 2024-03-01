@@ -5,7 +5,7 @@ export class ISBNChecksumValidationRule implements IBusinessRule {
   constructor(private readonly isbn: string) {}
 
   isBroken(): boolean {
-    return BookISBN.CheckSum(this.isbn);
+    return !BookISBN.CheckSum(this.isbn);
   }
 
   message = 'Invalid checksum for ISBN.';

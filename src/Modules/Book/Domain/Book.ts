@@ -120,6 +120,6 @@ export class Book extends Entity {
   }
 
   toPrimitives() {
-    throw new Error('Method not implemented.');
+    return;
   }
 }

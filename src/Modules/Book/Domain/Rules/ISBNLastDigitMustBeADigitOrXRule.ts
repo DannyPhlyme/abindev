@@ -7,7 +7,7 @@ export class ISBNLastDigitMustBeADigitOrXRule implements IBusinessRule {
     const lastDigit = this.isbn[9].toUpperCase();
 
     if (!/[\dX]/.test(lastDigit)) {
-      return false;
+      return true;
     }
   }
 

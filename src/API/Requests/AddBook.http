@@ -1,0 +1,14 @@
+@host=http://localhost:3000/books
+
+POST {{host}}
+Content-Type: application/json
+
+{
+    "title": "Domain-Driven Design: Tackling Complexity in the Heart of Software",
+    "author": "Eric Evans",
+    "isbn": "0321125215",
+    "description": "Eric Evans has written a fantastic book on how you can make the design of your software match your mental model of the problem domain you are addressing. His book is very compatible with XP. It is not about drawing pictures of a domain; it is about how you think of it, the language you use to talk about it, and how you organize your software to reflect your improving understanding of it. Eric thinks that learning about your problem domain is as likely to happen at the end of your project as at the beginning, and so refactoring is a big part of his technique. The book is a fun read. Eric has lots of interesting stories, and he has a way with words. I see this book as essential reading for software developers--it is a future classic.",
+    "publisher": "Addison-Wesley Professional",
+    "publishedDate": "2003-08-20",
+    "pageCount": 560
+}
