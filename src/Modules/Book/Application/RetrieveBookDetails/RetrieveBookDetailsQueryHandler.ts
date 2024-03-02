@@ -1,3 +1,4 @@
+import { ResourceNotFoundError } from '@BuildingBlocks/Application/ResourceNotFoundError';
 import { Uuid } from '@BuildingBlocks/Domain/Uuid';
 import { Book } from '@Modules/Book/Domain/Book';
 import { BookId } from '@Modules/Book/Domain/BookId';
@@ -17,7 +18,12 @@ export class RetrieveBookDetailsQueryHandler implements IQueryHandler<RetrieveBo
   async handle(query: RetrieveBookDetailQuery): Promise<Book> {
     try {
       const uid = new Uuid(query.bookId);
-      return await this.bookRepository.findBookById(new BookId(uid));
+      const book = await this.bookRepository.findBookById(new BookId(uid));
+
+      if (!book) {
+        throw new ResourceNotFoundError('The book you are attempting to retrieve does not exist in the collection.');
+      }
+      return book;
     } catch (error) {
       throw error;
     }
