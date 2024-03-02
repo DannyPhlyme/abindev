@@ -14,7 +14,7 @@ export class BookRepository implements IBookRepository {
   }
 
   async findBookById(id: BookId): Promise<Book> {
-    throw new Error('Method not implemented.');
+    return await this.em.findOne(BookEntitySchema, { id });
   }
 
   async findBooks(): Promise<Book[]> {

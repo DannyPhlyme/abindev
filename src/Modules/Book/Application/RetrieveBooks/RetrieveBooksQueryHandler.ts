@@ -12,7 +12,7 @@ export class RetrieveBooksQueryHandler implements IQueryHandler<RetrieveBooksQue
     private readonly bookRepository: IBookRepository,
   ) {}
 
-  async handle(request: RetrieveBooksQuery): Promise<Array<Book>> {
+  async handle(): Promise<Array<Book>> {
     try {
       return await this.bookRepository.findBooks();
     } catch (error) {

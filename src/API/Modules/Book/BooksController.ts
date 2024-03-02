@@ -1,7 +1,8 @@
 import { AddBookCommand } from '@Modules/Book/Application/AddBook/AddBookCommand';
+import { RetrieveBookDetailQuery } from '@Modules/Book/Application/RetrieveBookDetails/RetrieveBookDetailQuery';
 import { RetrieveBooksQuery } from '@Modules/Book/Application/RetrieveBooks/RetrieveBooksQuery';
 import { Book } from '@Modules/Book/Domain/Book';
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { Mediator } from 'nestjs-mediator';
 import { AddBookRequest } from './AddBookRequest';
 import { BookResponse } from './BookResponse';
@@ -32,6 +33,15 @@ export class BooksController {
     const result = await this.mediator.send(query);
 
     return result.map((book) => this.toDto(book));
+  }
+
+  @Get(':id')
+  async retrieveBookDetails(@Param('id') bookId: string) {
+    const query = new RetrieveBookDetailQuery(bookId);
+
+    const result = await this.mediator.send(query);
+
+    return this.toDto(result);
   }
 
   private toDto(book: Book): BookResponse {
