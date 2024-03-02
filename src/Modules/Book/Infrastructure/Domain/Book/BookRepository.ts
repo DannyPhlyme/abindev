@@ -25,4 +25,8 @@ export class BookRepository implements IBookRepository {
     const [, count] = await this.em.findAndCount(BookEntitySchema, { isbn }, { limit: 10 });
     return count;
   }
+
+  removeBook(book: Book): void {
+    this.em.remove(book);
+  }
 }

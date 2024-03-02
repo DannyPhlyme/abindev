@@ -7,4 +7,5 @@ export interface IBookRepository {
   findBookById(id: BookId): Promise<Book>;
   findBooks(): Promise<Array<Book>>;
   countBooks(isbn: BookISBN): Promise<number>;
+  removeBook(book: Book): void;
 }

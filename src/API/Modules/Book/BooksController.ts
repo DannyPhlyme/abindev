@@ -1,9 +1,10 @@
 import { AddBookCommand } from '@Modules/Book/Application/AddBook/AddBookCommand';
+import { RemoveBookCommand } from '@Modules/Book/Application/RemoveBook/RemoveBookCommand';
 import { RetrieveBookDetailQuery } from '@Modules/Book/Application/RetrieveBookDetails/RetrieveBookDetailQuery';
 import { RetrieveBooksQuery } from '@Modules/Book/Application/RetrieveBooks/RetrieveBooksQuery';
 import { UpdateBookDetailsCommand } from '@Modules/Book/Application/UpdateBookDetails/UpdateBookDetailsCommand';
 import { Book } from '@Modules/Book/Domain/Book';
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { Mediator } from 'nestjs-mediator';
 import { AddBookRequest } from './AddBookRequest';
 import { BookResponse } from './BookResponse';
@@ -58,6 +59,13 @@ export class BooksController {
       request.publishedDate,
       request.pageCount,
     );
+
+    return await this.mediator.send(command);
+  }
+
+  @Delete(':id')
+  async removeBook(@Param('id') bookId: string) {
+    const command = new RemoveBookCommand(bookId);
 
     return await this.mediator.send(command);
   }
