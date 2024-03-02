@@ -42,7 +42,7 @@ export class UpdateBookDetailsCommandHandler implements ICommandHandler<UpdateBo
         command.pageCount,
       );
 
-      await this.unitOfWork.commit();
+      await this.unitOfWork.commit(book);
 
       Logger.log(`[${this.constructor.name}] Commmand ${UpdateBookDetailsCommand.name} successfully`);
     } catch (error) {

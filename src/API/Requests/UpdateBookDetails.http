@@ -1,6 +1,6 @@
 @host=http://localhost:3000
 
-@id=c29fdad4-2dcb-403c-b195-c9e1e04c1c23
+@id=aff1261b-5c18-4864-9279-dcb77097bd28
 
 PUT {{host}}/books/{{id}}
 Content-Type: application/json

@@ -3,6 +3,8 @@ import { RuleChecker } from '@BuildingBlocks/Domain/RuleChecker';
 import { Uuid } from '@BuildingBlocks/Domain/Uuid';
 import { BookISBN } from './BookISBN';
 import { BookId } from './BookId';
+import { BookDetailsUpdatedDomainEvent } from './Events/BookDetailsUpdatedDomainEvent';
+import { NewBookAddedDomainEvent } from './Events/NewBookAddedDomainEvent';
 import { IBooksCounter } from './IBooksCounter';
 import { BookISBNMustBeUniqueRule } from './Rules/BookISBNMustBeUniqueRule';
 
@@ -117,6 +119,19 @@ export class Book extends Entity {
     this.publisher = publisher;
     this.publishedDate = publishedDate;
     this.pageCount = pageCount;
+
+    this.addDomainEvent(
+      new NewBookAddedDomainEvent(
+        this.id,
+        this.title,
+        this.author,
+        this.isbn,
+        this.description,
+        this.publisher,
+        this.publishedDate,
+        this.pageCount,
+      ),
+    );
   }
 
   public updateBookDetails(
@@ -135,6 +150,8 @@ export class Book extends Entity {
     this.publisher = publisher;
     this.publishedDate = publishedDate;
     this.pageCount = pageCount;
+
+    this.addDomainEvent(new BookDetailsUpdatedDomainEvent(this.id, this.title, this.author, this.isbn));
   }
 
   toPrimitives() {
