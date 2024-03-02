@@ -5,7 +5,7 @@ import { IBookRepository } from '@Modules/Book/Domain/IBookRepository';
 import { IBooksCounter } from '@Modules/Book/Domain/IBooksCounter';
 import { Inject, Logger } from '@nestjs/common';
 import { RequestHandler } from 'nestjs-mediator';
-import { ICommandHandler, ICommandHandlerWithResult } from '../Configuration/Commands/ICommandHandler';
+import { ICommandHandler } from '../Configuration/Commands/ICommandHandler';
 import { AddBookCommand } from './AddBookCommand';
 
 @RequestHandler(AddBookCommand)

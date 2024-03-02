@@ -17,8 +17,8 @@ export class BookRepository implements IBookRepository {
     throw new Error('Method not implemented.');
   }
 
-  findBooks(): Promise<Book[]> {
-    throw new Error('Method not implemented.');
+  async findBooks(): Promise<Book[]> {
+    return await this.em.findAll(BookEntitySchema);
   }
 
   async countBooks(isbn: BookISBN): Promise<number> {
