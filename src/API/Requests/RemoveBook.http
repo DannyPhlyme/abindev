@@ -1,0 +1,5 @@
+@host=http://localhost:3000
+
+@id=f37da45d-67a1-4885-8b4c-76e512d7ce6f
+
+DELETE {{host}}/books/{{id}}

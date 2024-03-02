@@ -1,0 +1,5 @@
+@host=http://localhost:3000
+
+@id=704e094e-7f4a-4091-9ea5-b89fd71761b2
+
+GET {{host}}/books/{{id}}
