@@ -119,6 +119,24 @@ export class Book extends Entity {
     this.pageCount = pageCount;
   }
 
+  public updateBookDetails(
+    title: string,
+    author: string,
+    isbn: BookISBN,
+    description: string,
+    publisher: string,
+    publishedDate: Date,
+    pageCount: number,
+  ) {
+    this.title = title;
+    this.author = author;
+    this.isbn = isbn;
+    this.description = description;
+    this.publisher = publisher;
+    this.publishedDate = publishedDate;
+    this.pageCount = pageCount;
+  }
+
   toPrimitives() {
     return;
   }
