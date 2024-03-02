@@ -1,6 +1,6 @@
-import { ICommandWithResult } from '../Contracts/ICommand';
+import { ICommand } from '../Contracts/ICommand';
 
-export class AddBookCommand extends ICommandWithResult<string> {
+export class AddBookCommand extends ICommand {
   constructor(
     readonly title: string,
     readonly author: string,

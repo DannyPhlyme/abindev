@@ -5,11 +5,11 @@ import { IBookRepository } from '@Modules/Book/Domain/IBookRepository';
 import { IBooksCounter } from '@Modules/Book/Domain/IBooksCounter';
 import { Inject, Logger } from '@nestjs/common';
 import { RequestHandler } from 'nestjs-mediator';
-import { ICommandHandlerWithResult } from '../Configuration/Commands/ICommandHandler';
+import { ICommandHandler, ICommandHandlerWithResult } from '../Configuration/Commands/ICommandHandler';
 import { AddBookCommand } from './AddBookCommand';
 
 @RequestHandler(AddBookCommand)
-export class AddBookCommandHandler implements ICommandHandlerWithResult<AddBookCommand, string> {
+export class AddBookCommandHandler implements ICommandHandler<AddBookCommand> {
   constructor(
     @Inject('BooksCounter')
     private readonly booksCounter: IBooksCounter,
@@ -21,7 +21,7 @@ export class AddBookCommandHandler implements ICommandHandlerWithResult<AddBookC
     private readonly unitOfWork: IUnitOfWork,
   ) {}
 
-  async handle(command: AddBookCommand): Promise<string> {
+  async handle(command: AddBookCommand): Promise<void> {
     try {
       Logger.log(`[${this.constructor.name}] Executing command ${AddBookCommand.name}...`);
 
@@ -40,8 +40,6 @@ export class AddBookCommandHandler implements ICommandHandlerWithResult<AddBookC
       await this.unitOfWork.commit(book);
 
       Logger.log(`[${this.constructor.name}] Commmand ${AddBookCommand.name} successfully`);
-
-      return book.id.value;
     } catch (error) {
       Logger.log(`[${this.constructor.name}] Commmand ${AddBookCommand.name} processing failed`);
       throw error;
